@@ -32,10 +32,10 @@ class BE_Static_Subpages_Widget extends WP_Widget {
      *
      * @return void
      **/
-	function BE_Static_Subpages_Widget() {
+	function __construct() {
 		load_plugin_textdomain( 'be-static-subpages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		$widget_ops = array( 'classname' => 'widget_static_subpages', 'description' => __( 'Select a page, and widget will list that page\'s subpages', 'be-static-subpages' ) );
-		$this->WP_Widget( 'static-subpages-widget', __( 'Static Subpages Widget', 'be-static-subpages' ), $widget_ops );
+		parent::__construct( 'static-subpages-widget', __( 'Static Subpages Widget', 'be-static-subpages' ), $widget_ops );
 	}
 
     /**
