@@ -71,11 +71,12 @@ class BE_Static_Subpages_Widget extends WP_Widget {
 		
 		// Build title
 		$title = esc_attr( $instance['title'] );
-		if( 1 == $instance['title_from_parent'] ) {
+		if( 1 == $instance['title_from_parent'] )
 			$title = get_the_title( $page );
-			if( 1 == $instance['title_link'] )
-				$title = '<a href="' . get_permalink( $page ) . '">' . apply_filters( 'be_static_subpages_widget_title', $title ) . '</a>';
-		}	
+		$title = apply_filters( 'be_static_subpages_widget_title', $title );
+		if( 1 == $instance['title_link'] )
+			$title = '<a href="' . get_permalink( $page ) . '">' . $title . '</a>';
+
 
 		if( !empty( $title ) ) 
 			echo $before_title . $title . $after_title;
@@ -184,7 +185,7 @@ class BE_Static_Subpages_Widget extends WP_Widget {
 
 		<p>
 			<input class="checkbox" type="checkbox" value="1" <?php checked( $instance['title_link'], 1 ); ?> id="<?php echo $this->get_field_id( 'title_link' ); ?>" name="<?php echo $this->get_field_name( 'title_link' ); ?>" />
-			<label for="<?php echo $this->get_field_id( 'title_link' ); ?>"><?php _e( 'Make title a link', 'be-subpages' ); echo '<br /><em>('; _e( 'only if "use top level page" is checked', 'be-subpages' ); echo ')</em></label>';?>
+			<label for="<?php echo $this->get_field_id( 'title_link' ); ?>"><?php _e( 'Link widget title to top level page', 'be-subpages' ); echo '</label>';?>
 		</p>
 
 		<?php
